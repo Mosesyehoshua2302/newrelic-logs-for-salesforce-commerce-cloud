@@ -4,7 +4,7 @@ FROM grafana/fluent-plugin-loki:main
 WORKDIR /app
 
 # Copy configuration files
-COPY fluent.conf /fluentd/etc/fluent.conf
+COPY fluent.conf /fluentd/etc/
 
 # Volume mounts
 VOLUME ["/var/log", "/etc/machine-id", "/dev/log", "/var/run/systemd/journal/"]
