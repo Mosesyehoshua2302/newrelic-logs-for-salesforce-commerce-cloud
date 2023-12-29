@@ -20,6 +20,6 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
       - echo docker-compose build...
       - docker-compose -f ./docker-compose.yml build -t compose
-      - docker-compose compose:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/compose:$IMAGE_TAG
-      - docker-compose  push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/compose:$IMAGE_TAG
+      - docker tag compose:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/compose:$IMAGE_TAG
+      - docker push  push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/compose:$IMAGE_TAG
 
