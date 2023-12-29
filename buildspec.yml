@@ -21,4 +21,4 @@ phases:
       - echo docker-compose build...
       - docker-compose -f ./docker-compose.yml build
       # - docker tag compose:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/compose:$IMAGE_TAG
-      - docker push grafana/fluent-plugin-loki:project_service
+      - docker push fluentd
