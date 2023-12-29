@@ -4,6 +4,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo installing wget...
+      - sudo yum install wget -y
+      - echo pulling loki config...
+      - wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/cmd/loki/loki-local-config.yaml -O loki-config.yaml
+      - echo running loki...
+      - docker run --name loki -d -v $(pwd)/loki-config.yaml:/mnt/config/loki-config.yaml -p 3100:3100 grafana/loki:2.9.1 -config.file=/mnt/config/loki-config.yaml
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 
@@ -18,6 +24,4 @@ phases:
       - docker tag $IMAGE_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
       - echo Pushing Docker image to Amazon ECR...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
-      - sudo yum install wget -y
-      - wget https://raw.githubusercontent.com/grafana/loki/v2.9.1/cmd/loki/loki-local-config.yaml -O loki-config.yaml
-      - docker run --name loki -d -v $(pwd)/loki-config.yaml:/mnt/config/loki-config.yaml -p 3100:3100 grafana/loki:2.9.1 -config.file=/mnt/config/loki-config.yaml
+
