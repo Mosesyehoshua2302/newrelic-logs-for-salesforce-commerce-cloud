@@ -20,5 +20,5 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
       - echo docker-compose build...
       - docker-compose -f ./docker-compose.yml build
-      - docker tag grafana/fluent-plugin-loki:main $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/grafana:$IMAGE_TAG
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/grafana:$IMAGE_TAG
+      # - docker tag grafana/fluent-plugin-loki:main $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/grafana:$IMAGE_TAG
+      - docker-compose -f ./docker-compose.yml push fluentd
