@@ -1,7 +1,11 @@
 version: "3.3"
 services:
   fluentd:
-    image: grafana/fluent-plugin-loki:main
+    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/grafana:$IMAGE_TAG
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    # image: grafana/fluent-plugin-loki:main
     ports:
       - "24224:24224"
     command:
