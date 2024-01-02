@@ -6,7 +6,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-      - sed -e "s/LOKI_URL/$LOKI_URL/g" ./fluent.conf
+      # - sed -e "s/LOKI_URL/$LOKI_URL/g" ./fluent.conf
 
   build:
     commands:
