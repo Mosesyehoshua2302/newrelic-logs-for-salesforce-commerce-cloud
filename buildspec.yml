@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Building Docker image...
       - docker build -t $IMAGE_NAME .
-      - docker build -t  loki  -f ../docker/Dockerfile ../docker
+      - docker build -t  loki  -f ../docker/Dockerfile
 
   post_build:
     commands:
